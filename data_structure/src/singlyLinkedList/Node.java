@@ -1,4 +1,4 @@
-package SinglyLinkedList;
+package singlyLinkedList;
 /**
  * 链表节点
  * @author admin
