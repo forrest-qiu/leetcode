@@ -16,8 +16,10 @@ public class LinkedReverse {
 			val = x;
 		}
 	}
+
 	/**
 	 * 反转链表
+	 * 
 	 * @param head
 	 * @return
 	 */
@@ -34,9 +36,10 @@ public class LinkedReverse {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 移除链表中值为给定值的元素
+	 * 
 	 * @param head
 	 * @param val
 	 * @return
@@ -45,16 +48,16 @@ public class LinkedReverse {
 		ListNode t1 = head;
 		ListNode pre = null;
 		ListNode result = head;
-		while(t1!=null) {
-			if(pre==null&&t1.val == val) {
+		while (t1 != null) {
+			if (pre == null && t1.val == val) {
 				result = t1.next;
 				t1.next = null;
 				t1 = result;
-			}else if(pre!=null&&t1.val == val){
+			} else if (pre != null && t1.val == val) {
 				pre.next = t1.next;
 				t1.next = null;
 				t1 = pre.next;
-			}else{
+			} else {
 				pre = t1;
 				t1 = t1.next;
 			}
@@ -62,4 +65,28 @@ public class LinkedReverse {
 		return result;
 	}
 
+	/**
+	 * 给定一个单链表，把所有的奇数节点和偶数节点分别排在一起。请注意，这里的奇数节点和偶数节点指的是节点编号的奇偶性，
+	 * 而不是节点的值的奇偶性。
+	 * 请尝试使用原地算法完成。你的算法的空间复杂度应为 O(1)，时间复杂度应为 O(nodes)，nodes 为节点总数。
+	 * @param head
+	 * @return
+	 */
+	public ListNode oddEvenList(ListNode head) {
+		
+		if(head.next!=null&&head.next.next!=null) {
+			ListNode temp1 = head;
+			ListNode temp = null;
+			while(temp1.next!=null&&temp1.next.next!=null) {
+				ListNode pre = temp1.next;
+				ListNode tempj = temp1.next.next;
+				pre.next = tempj.next;
+				temp = tempj.next;
+				tempj.next = pre;
+				temp1.next = tempj;
+				temp1 = temp;
+			}
+		}
+		return head;
+	}
 }
