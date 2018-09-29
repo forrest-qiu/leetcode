@@ -1,5 +1,8 @@
 package singlyLinkedList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 单向链表反转
  * 
@@ -8,7 +11,7 @@ package singlyLinkedList;
  */
 public class LinkedReverse {
 
-	public class ListNode {
+	public static class ListNode {
 		int val;
 		ListNode next;
 
@@ -89,4 +92,33 @@ public class LinkedReverse {
 		}
 		return head;
 	}
+
+	/**
+	 * 回文判断
+	 * @param head
+	 * @return
+	 */
+	public static boolean isPalindrome(ListNode head) {
+		List<ListNode> list = new ArrayList<>();
+		while(head!=null){
+			list.add(head);
+			head = head.next;
+		}
+		for (int i = 0; i < list.size(); i++) {
+			if(list.get(i) != list.get(list.size()-1-i)){
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public static void main(String[] args){
+		ListNode node1 = new ListNode(1);
+		ListNode node2 = new ListNode(2);
+		ListNode node3 = new ListNode(2);
+		node1.next = node2;
+		node2.next = node3;
+		System.out.println(isPalindrome(node1));
+	}
+
 }
