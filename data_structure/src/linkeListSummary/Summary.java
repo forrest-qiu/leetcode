@@ -163,22 +163,35 @@ public class Summary {
 	 * @return
 	 */
 	 public RandomListNode copyRandomList(RandomListNode head) {
-		 RandomListNode result = head;
 		 RandomListNode temp = head;
 		 RandomListNode temp1 = null;
-		 int i = 0;
 		 while(temp!=null) {
 			 temp1 = temp;
 			 temp = temp.next;
 			 RandomListNode copy_node = new RandomListNode(temp1.label);
-			 if(i == 0) {
-				 result = copy_node;
-			 }
 			 copy_node.next = temp1.next;
+			 temp1.next = copy_node;
+		 }
+		 //复制随机指针
+		 temp = head;
+		 while(temp!=null) {
+			 RandomListNode random = temp.random;
+			 temp.next.random = random;
+			 temp = temp.next.next;
+		 }
+		 //拆分链表
+		 temp = head;
+		 RandomListNode result = head.next;
+		 while(temp != null) {
+			 RandomListNode temp_next = temp.next;
+			 if(temp_next.next!=null) {
+				 temp_next.next = temp_next.next.next;
+			 }else {
+				 temp_next.next  = null;
+			 }
 		 }
 		 
-		 
-		 return null;
+		 return result;
      }
 
 }
