@@ -163,6 +163,9 @@ public class Summary {
 	 * @return
 	 */
 	 public RandomListNode copyRandomList(RandomListNode head) {
+		 if(head==null) {
+			 return head;
+		 }
 		 RandomListNode temp = head;
 		 RandomListNode temp1 = null;
 		 while(temp!=null) {
@@ -176,22 +179,60 @@ public class Summary {
 		 temp = head;
 		 while(temp!=null) {
 			 RandomListNode random = temp.random;
-			 temp.next.random = random;
+			 if(random!=null) {
+				 temp.next.random = random.next;
+			 }
 			 temp = temp.next.next;
 		 }
 		 //拆分链表
 		 temp = head;
-		 RandomListNode result = head.next;
+		 RandomListNode result = temp.next;
 		 while(temp != null) {
 			 RandomListNode temp_next = temp.next;
+			 temp.next = temp_next.next;
 			 if(temp_next.next!=null) {
 				 temp_next.next = temp_next.next.next;
 			 }else {
 				 temp_next.next  = null;
 			 }
+			 temp = temp.next;
 		 }
-		 
 		 return result;
      }
+	 
+	 /**
+	  * 旋转链表
+	  * @param head
+	  * @param k
+	  * @return
+	  */
+	 public ListNode rotateRight(ListNode head, int k) {
+		 ListNode realHead = head;
+		 if(head.next==null||head == null||k<=0){
+             return realHead;
+         }
+		 int j = 0;
+		 while(head!=null) {
+			 head = head.next;
+			 j++;
+		 }
+		 for(int i = 0;i<k%j;i++) {
+			 ListNode temp = realHead;
+			 ListNode last = null;
+			 ListNode preLast = null;
+			 while(true) {
+				 if(temp.next.next == null) {
+					 last = temp.next;
+					 preLast = temp;
+					 break;
+				 }
+				 temp = temp.next;
+			 }
+			 preLast.next = null;
+			 last.next = realHead;
+			 realHead = last;
+		 }
+		 return realHead;
+	 }
 
 }
