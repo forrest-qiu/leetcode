@@ -26,6 +26,7 @@ public class Test {
 		list.deleteAtIndex(1);
 		list.deleteAtIndex(1);
 		System.out.println(list+"\t this size:"+list.size);
+		hfdsjfklsd
 	}
 	
 }
