@@ -26,7 +26,7 @@ public class Test {
 		list.deleteAtIndex(1);
 		list.deleteAtIndex(1);
 		System.out.println(list+"\t this size:"+list.size);
-		int a =2,b=3;
+		int a =2,b=3,j=6;
 	}
 	
 }
