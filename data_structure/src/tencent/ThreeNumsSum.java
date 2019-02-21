@@ -1,8 +1,11 @@
 package tencent;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -20,46 +23,45 @@ public class ThreeNumsSum {
 		if(nums == null || nums.length < 3) {
 			return result;
 		}
-		List<Integer> list = new ArrayList<Integer>(nums.length);
-		for (int i : nums) {
-			list.add(i);
-		}
-		Collections.sort(list);
+		Arrays.sort(nums);
+		Set<Integer> set = new HashSet<>();
 		//如果最大值小于0，而最小值大于0，则说明数组无法找到和为0的三个数
-		if(list.get(list.size()-1)<0||list.get(0)>0) {
+		if(nums[nums.length-1]<0||nums[0]>0) {
 			return result;
 		}
 		for(int i = 0;i < nums.length; i++) {
-			if(list.get(i)>0) {
+			if(nums[i]>0) {
 				break;
 			}
-			if(i>0 && list.get(i) == list.get(i-1)) {
+			if(i > 0 && set.contains(nums[i])) {
 				continue;
 			}
-			int start = i+1,end = list.size() - 1;
-			int target = 0 - list.get(i);
+			int start = i+1;
+			int end = nums.length - 1;
+			int target = 0 - nums[i];
 			while(end>start) {
-				int tempSum = list.get(start)+list.get(end);
+				int tempSum = nums[start]+nums[end];
 				if(tempSum>target) {
 					 --end;
 				}else if(tempSum == target) {
 					List<Integer> tempList = new ArrayList<>(3);
-					tempList.add(list.get(start));
-					tempList.add(list.get(i));
-					tempList.add(list.get(end));
+					tempList.add(nums[i]);
+					tempList.add(nums[start]);
+					tempList.add(nums[end]);
 					result.add(tempList);
-					while(start < end && list.get(start) == list.get(start+1)) {
+					while(start < end && nums[start] == nums[start+1]) {
 						++start;
 					}
-					while(start < end && list.get(end) == list.get(end -1)) {
-						 --end;
+					while(start < end && nums[end] == nums[end-1]) {
+						--end;
 					}
-					--end ;
+					--end;
 					++start ;
 				}else {
-					start++;
+					++start;
 				}
 			}
+			set.add(nums[i]);
 		}
 		return result;
 	}
