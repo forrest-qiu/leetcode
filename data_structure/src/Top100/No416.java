@@ -8,6 +8,7 @@ import java.util.Arrays;
  * 给你一个 只包含正整数 的 非空 数组 nums 。请你判断是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。
  */
 public class No416 {
+    //dp[i] 表示nums中是否存在分割成两个子集并且子集元素和相等且为i
     public boolean canPartition(int[] nums) {
         int n = nums.length;
         if (n < 2) {
