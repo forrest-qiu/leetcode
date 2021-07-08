@@ -1,6 +1,7 @@
 package preday;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * 夏日炎炎，小男孩 Tony 想买一些雪糕消消暑。
