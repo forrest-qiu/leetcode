@@ -97,7 +97,13 @@ public class No1418 {
         long end = System.currentTimeMillis();
         System.out.println("执行完成:"+end);
         System.out.println("执行完成:"+(end-start)/1000);
-        ReentrantLock lock  = new ReentrantLock();
-        lock.lock();
+
+
+
+
     }
+}
+
+class Test4{
+
 }
